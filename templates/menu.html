@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Menu — Freshly{% endblock %}
+{% block content %}
+<h1>Menu</h1>
+{% for c in categories %}
+  <h2>{{ c.nom }}</h2>
+  <ul>
+  {% for p in plats %}
+    {% if p.categorie == c %}
+      <li>{{ p.nom }} — {{ p.prix }} € <br><small>{{ p.description }}</small></li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+{% empty %}
+  <p>Aucune catégorie.</p>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Accueil — Freshly{% endblock %}
+{% block content %}
+<section>
+  <h1>Nos plats phares</h1>
+  <div>
+    {% for p in plats %}
+      <article>
+        <h3>{{ p.nom }}</h3>
+        <p>{{ p.description }}</p>
+        <strong>{{ p.prix }} €</strong>
+      </article>
+    {% empty %}
+      <p>Aucun plat pour le moment.</p>
+    {% endfor %}
+  </div>
+</section>
+<section>
+  <h2>Témoignages</h2>
+  <ul>
+    {% for t in temoins %}
+      <li>"{{ t.message }}" — <em>{{ t.nom }}</em> ({{ t.note }}/5)</li>
+    {% empty %}
+      <li>Soyez le premier à laisser un avis !</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
