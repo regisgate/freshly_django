@@ -26,3 +26,5 @@ class Temoin(models.Model):
 
     def __str__(self):
         return f"{self.nom} ({self.note}/5)"
+image = models.ImageField(upload_to="plats/", blank=True, null=True)
+
