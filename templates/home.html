@@ -1,28 +1,52 @@
 {% extends "base.html" %}
 {% block title %}Accueil — Freshly{% endblock %}
+
 {% block content %}
-<section>
-  <h1>Nos plats phares</h1>
-  <div>
+<section class="hero">
+  <div class="container">
+    <h1>Bienvenue chez Freshly</h1>
+    <p>Des plats faits maison, des ingrédients frais, un service chaleureux.</p>
+    <a class="btn" href="{% url 'menu' %}">Découvrir le menu</a>
+  </div>
+</section>
+
+<section class="container">
+  <h2 class="section-title">Plats phares</h2>
+  <div class="menu-grid">
     {% for p in plats %}
-      <article>
-        <h3>{{ p.nom }}</h3>
-        <p>{{ p.description }}</p>
-        <strong>{{ p.prix }} €</strong>
+      <article class="menu-card">
+        {% if p.image %}<img src="{{ p.image.url }}" alt="{{ p.nom }}" class="menu-card__img">{% endif %}
+        <div class="menu-card__body">
+          <h3 class="menu-card__title">{{ p.nom }}</h3>
+          <p class="menu-card__desc">{{ p.description }}</p>
+          <div class="menu-card__price">{{ p.prix }} €</div>
+        </div>
       </article>
     {% empty %}
-      <p>Aucun plat pour le moment.</p>
+      <p>Aucun plat à afficher.</p>
     {% endfor %}
   </div>
 </section>
-<section>
-  <h2>Témoignages</h2>
-  <ul>
+
+<section class="container">
+  <h2 class="section-title">Ils ont adoré</h2>
+  <div class="slick-slider" id="testimonials">
     {% for t in temoins %}
-      <li>"{{ t.message }}" — <em>{{ t.nom }}</em> ({{ t.note }}/5)</li>
+      <blockquote class="testimonial">
+        “{{ t.message }}”
+        <footer>— {{ t.nom }} ({{ t.note }}/5)</footer>
+      </blockquote>
     {% empty %}
-      <li>Soyez le premier à laisser un avis !</li>
+      <p>Soyez le premier à laisser un avis !</p>
     {% endfor %}
-  </ul>
+  </div>
 </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  $(function(){
+    $('#testimonials').slick({ dots:true, autoplay:true, arrows:false });
+  });
+</script>
 {% endblock %}

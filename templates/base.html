@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Freshly — Restaurant{% endblock %}</title>
 
-  <!-- Styles du thème -->
   <link rel="icon" href="{% static 'Freshly Restaurant/favicon.png' %}">
   <link rel="stylesheet" href="{% static 'Freshly Restaurant/css/slick.css' %}">
   <link rel="stylesheet" href="{% static 'Freshly Restaurant/css/slick-theme.css' %}">
@@ -15,34 +14,40 @@
 </head>
 <body>
 
-  <!-- Header / Nav (repris du HTML du thème) -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="{% url 'home' %}">Freshly</a>
-      <nav class="nav">
-        <a href="{% url 'home' %}">Accueil</a>
-        <a href="{% url 'menu' %}">Menu</a>
-        <a href="{% url 'about' %}">À propos</a>
-        <a href="{% url 'contact' %}">Contact</a>
-      </nav>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="{% url 'home' %}">Freshly</a>
+    <nav class="nav">
+      <a href="{% url 'home' %}">Accueil</a>
+      <a href="{% url 'menu' %}">Menu</a>
+      <a href="{% url 'contact' %}">Contact</a>
+    </nav>
+  </div>
+</header>
+
+{% if messages %}
+<div class="container" style="margin:12px 0;">
+  {% for message in messages %}
+    <div class="flash {{ message.tags }}">
+      {{ message }}
     </div>
-  </header>
+  {% endfor %}
+</div>
+{% endif %}
 
-  <main>
-    {% block content %}{% endblock %}
-  </main>
+<main>
+  {% block content %}{% endblock %}
+</main>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>© {{ now|default:0|date:"Y" }} Freshly. Tous droits réservés.</p>
-    </div>
-  </footer>
+<footer class="site-footer">
+  <div class="container">
+    <p>© {{ now|default:0|date:"Y" }} Freshly. Tous droits réservés.</p>
+  </div>
+</footer>
 
-  <!-- Scripts du thème -->
-  <script src="{% static 'Freshly Restaurant/js/jquery.min.js' %}"></script>
-  <script src="{% static 'Freshly Restaurant/js/slick.min.js' %}"></script>
-  <script src="{% static 'Freshly Restaurant/js/main.js' %}"></script>
-  {% block scripts %}{% endblock %}
+<script src="{% static 'Freshly Restaurant/js/jquery.min.js' %}"></script>
+<script src="{% static 'Freshly Restaurant/js/slick.min.js' %}"></script>
+<script src="{% static 'Freshly Restaurant/js/main.js' %}"></script>
+{% block scripts %}{% endblock %}
 </body>
 </html>
