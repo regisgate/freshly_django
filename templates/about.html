@@ -1,0 +1,29 @@
+﻿{% extends "base.html" %}
+{% block title %}Ã€ propos â€” Freshly{% endblock %}
+
+{% block content %}
+<section class="container" style="padding:48px 0;">
+  <h1 class="section-title">Ã€ propos</h1>
+  <p>
+    Freshly est un restaurant qui met Ã  lâ€™honneur les produits frais et de saison.
+    Notre Ã©quipe cuisine chaque jour des plats faits maison, simples et gÃ©nÃ©reux.
+  </p>
+
+  <div class="menu-grid" style="margin-top:24px;">
+    {% for c in categories %}
+      <article class="menu-card">
+        {% if c.image %}
+          <img src="{{ c.image.url }}" alt="{{ c.nom }}" class="menu-card__img">
+        {% endif %}
+        <div class="menu-card__body">
+          <h3 class="menu-card__title">{{ c.nom }}</h3>
+          <p class="menu-card__desc">DÃ©couvrez nos {{ c.nom|lower }}.</p>
+        </div>
+      </article>
+    {% empty %}
+      <p>Aucune catÃ©gorie pour le moment.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+

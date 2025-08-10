@@ -1,15 +1,27 @@
-{% extends "base.html" %}
-{% block title %}Contact — Freshly{% endblock %}
+﻿{% extends "base.html" %}
+{% block title %}Contact â€” Freshly{% endblock %}
+
 {% block content %}
-<h1>Nous contacter</h1>
-<form method="post">
-  {% csrf_token %}
-  <label>Nom</label><br>
-  <input type="text" name="nom"><br>
-  <label>Email</label><br>
-  <input type="email" name="email"><br>
-  <label>Message</label><br>
-  <textarea name="message"></textarea><br>
-  <button type="submit">Envoyer</button>
-</form>
+<section class="container" style="padding:48px 0;">
+  <h1>Nous contacter</h1>
+  <p>Une question, une rÃ©servation de groupe, un Ã©vÃ©nement ? Ã‰crivez-nous !</p>
+
+  <form method="post" class="contact-form" style="max-width:680px">
+    {% csrf_token %}
+    <div class="form-row">
+      <label>Nom</label>
+      {{ form.nom }}
+    </div>
+    <div class="form-row">
+      <label>Email</label>
+      {{ form.email }}
+    </div>
+    <div class="form-row">
+      <label>Message</label>
+      {{ form.message }}
+    </div>
+    <button type="submit" class="btn">Envoyer</button>
+  </form>
+</section>
 {% endblock %}
+

@@ -1,17 +1,28 @@
-{% extends "base.html" %}
-{% block title %}Menu — Freshly{% endblock %}
+﻿{% extends "base.html" %}
+{% block title %}Menu â€” Freshly{% endblock %}
 {% block content %}
-<h1>Menu</h1>
-{% for c in categories %}
-  <h2>{{ c.nom }}</h2>
-  <ul>
-  {% for p in plats %}
-    {% if p.categorie == c %}
-      <li>{{ p.nom }} — {{ p.prix }} € <br><small>{{ p.description }}</small></li>
-    {% endif %}
+<section class="container">
+  <h1 class="section-title">Notre Menu</h1>
+
+  {% for c in categories %}
+    <h2 class="menu-category">{{ c.nom }}</h2>
+    <div class="menu-grid">
+      {% for p in plats %}
+        {% if p.categorie_id == c.id %}
+          <article class="menu-card">
+            {% if p.image %}<img src="{{ p.image.url }}" alt="{{ p.nom }}" class="menu-card__img">{% endif %}
+            <div class="menu-card__body">
+              <h3 class="menu-card__title">{{ p.nom }}</h3>
+              <p class="menu-card__desc">{{ p.description }}</p>
+              <div class="menu-card__price">{{ p.prix }} â‚¬</div>
+            </div>
+          </article>
+        {% endif %}
+      {% empty %}
+        <p>Aucun plat disponible.</p>
+      {% endfor %}
+    </div>
   {% endfor %}
-  </ul>
-{% empty %}
-  <p>Aucune catégorie.</p>
-{% endfor %}
+</section>
 {% endblock %}
+
