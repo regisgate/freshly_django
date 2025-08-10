@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% block title %}Menu — Freshly{% endblock %}
+﻿{% extends "base.html" %}
+{% block title %}Menu â€” Freshly{% endblock %}
 {% block content %}
 <section class="container">
   <h1 class="section-title">Notre Menu</h1>
@@ -14,7 +14,7 @@
             <div class="menu-card__body">
               <h3 class="menu-card__title">{{ p.nom }}</h3>
               <p class="menu-card__desc">{{ p.description }}</p>
-              <div class="menu-card__price">{{ p.prix }} €</div>
+              <div class="menu-card__price">{{ p.prix }} â‚¬</div>
             </div>
           </article>
         {% endif %}
@@ -25,3 +25,4 @@
   {% endfor %}
 </section>
 {% endblock %}
+
